@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versão do Sex0</title>
+    <style>
+        :root {
+            --azul-primario: #e6f2ff;
+            --azul-secundario: #cce5ff;
+            --azul-destaque: #0077cc;
+            --texto-escuro: #333;
+            --texto-claro: #fff;
+            --sombra: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--azul-primario);
+            color: var(--texto-escuro);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px var(--sombra);
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        h1 {
+            color: var(--azul-destaque);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .version-display {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin: 30px 0;
+            color: var(--azul-destaque);
+            letter-spacing: 1px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid var(--azul-secundario);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: white;
+            color: var(--texto-escuro);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        select:focus, button:focus {
+            outline: none;
+            border-color: var(--azul-destaque);
+        }
+
+        button {
+            background-color: var(--azul-destaque);
+            color: var(--texto-claro);
+            font-weight: 600;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #0066b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-reset {
+            background-color: #f0f0f0;
+            color: var(--texto-escuro);
+        }
+
+        .btn-reset:hover {
+            background-color: #e0e0e0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Dark Mode Opcional (se quiser manter) */
+        .dark-mode {
+            background-color: #121212;
+            color: var(--texto-claro);
+        }
+        .dark-mode .container {
+            background-color: #1e1e1e;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        .dark-mode select, .dark-mode .btn-reset {
+            background-color: #2a2a2a;
+            color: var(--texto-claro);
+            border-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VERSÃO DO SEX0</h1>
+        <div class="version-display" id="version">v0.0</div>
+        
+        <select id="versionSelect">
+            <option value="" disabled selected>Selecione sua versão</option>
+            <option value="v1.0">v1.0</option>
+            <option value="v2.0">v2.0</option>
+            <option value="v2.5">v2.5</option>
+            <option value="v3.0">v3.0</option>
+            <option value="v3.5">v3.5</option>
+            <option value="v4.0">v4.0</option>
+            <option value="v4.5">v4.5</option>
+            <option value="v4.6">v4.6</option>
+            <option value="v4.7">v4.7</option>
+            <option value="v4.8">v4.8</option>
+            <option value="v4.9">v4.9</option>
+            <option value="v5.0">v5.0</option>
+        </select>
+        
+        <button onclick="updateVersion()">Atualizar Versão</button>
+        <button class="btn-reset" onclick="resetVersion()">Resetar</button>
+        
+        <div class="footer">
+            Seu número de versão pessoal.
+        </div>
+    </div>
+
+    <script>
+        // Carrega versão salva
+        let currentVersion = localStorage.getItem('sex0-version') || 'v0.0';
+        document.getElementById('version').textContent = currentVersion;
+
+        function updateVersion() {
+            const selectedVersion = document.getElementById('versionSelect').value;
+            if (selectedVersion) {
+                currentVersion = selectedVersion;
+                document.getElementById('version').textContent = currentVersion;
+                localStorage.setItem('sex0-version', currentVersion);
+            }
+        }
+
+        function resetVersion() {
+            currentVersion = 'v0.0';
+            document.getElementById('version').textContent = currentVersion;
+            localStorage.setItem('sex0-version', currentVersion);
+            document.getElementById('versionSelect').selectedIndex = 0;
+        }
+    </script>
+</body>
+</html>
